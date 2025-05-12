@@ -344,3 +344,41 @@ document.querySelectorAll('.faq-question').forEach(question => {
         answer.classList.toggle('show');
     });
 });
+
+// Desktop-specific interactions
+function setupDesktopInteractions() {
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        });
+
+        // Hover effects for doctor cards
+        document.querySelectorAll('.doctor-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('img').style.transform = 'scale(1.05)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('img').style.transform = 'scale(1)';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
+}
+
+// Initialize on load
+window.addEventListener('load', setupDesktopInteractions);
+window.addEventListener('resize', setupDesktopInteractions);
