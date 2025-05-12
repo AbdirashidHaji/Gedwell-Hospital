@@ -221,3 +221,117 @@ document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('date').min = today;
 });
+
+
+// New Live Chat Functionality
+const openChatBtn = document.getElementById('openChat');
+const closeChatBtn = document.getElementById('closeChat');
+const chatModal = document.getElementById('chatModal');
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const sendChatBtn = document.getElementById('sendChat');
+
+openChatBtn.addEventListener('click', () => {
+    chatModal.classList.add('show');
+});
+
+closeChatBtn.addEventListener('click', () => {
+    chatModal.classList.remove('show');
+});
+
+function addChatMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${sender}`;
+    
+    const messageText = document.createElement('p');
+    messageText.textContent = text;
+    
+    messageDiv.appendChild(messageText);
+    chatBody.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+sendChatBtn.addEventListener('click', sendChatMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendChatMessage();
+    }
+});
+
+function sendChatMessage() {
+    const message = chatInput.value.trim();
+    if (message === '') return;
+    
+    addChatMessage(message, 'user');
+    chatInput.value = '';
+    
+    // Simulate bot response after delay
+    setTimeout(() => {
+        const responses = [
+            "Thank you for your message. Our customer service team will respond shortly.",
+            "For emergency assistance, please call our emergency line at +254 700 123 456.",
+            "We've noted your inquiry and will get back to you soon.",
+            "Would you like assistance with booking an appointment?",
+            "Our customer service hours are 8am to 8pm daily."
+        ];
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+        addChatMessage(randomResponse, 'bot');
+    }, 1500);
+}
+
+// New Medicine Stock Alert System
+function checkStockLevels() {
+    const rows = document.querySelectorAll('#medicineTable tbody tr');
+    
+    rows.forEach(row => {
+        const quantityCell = row.cells[2];
+        const quantity = parseInt(quantityCell.textContent);
+        
+        // Remove previous stock classes
+        row.classList.remove('low-stock', 'critical-stock');
+        
+        // Add appropriate class based on stock level
+        if (quantity <= 10 && quantity > 5) {
+            row.classList.add('low-stock');
+        } else if (quantity <= 5) {
+            row.classList.add('critical-stock');
+        }
+    });
+}
+
+// Call this function after any medicine updates
+// For example, after adding or deleting medicine:
+// checkStockLevels();
+
+// Initialize carousels with auto-scroll
+function initCarousels() {
+    const carousels = document.querySelectorAll('.tips-carousel, .testimonial-carousel');
+    
+    carousels.forEach(carousel => {
+        let scrollAmount = 0;
+        const scrollStep = 300;
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        
+        setInterval(() => {
+            if (scrollAmount >= maxScroll) {
+                scrollAmount = 0;
+                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                scrollAmount += scrollStep;
+                carousel.scrollBy({ left: scrollStep, behavior: 'smooth' });
+            }
+        }, 5000);
+    });
+}
+
+// Initialize on page load
+window.addEventListener('load', () => {
+    initCarousels();
+    checkStockLevels();
+    
+    // Set current year in footer
+    document.querySelector('.footer-bottom p').textContent = 
+        `© ${new Date().getFullYear()} Gedwell Hospital. All Rights Reserved.`;
+});
