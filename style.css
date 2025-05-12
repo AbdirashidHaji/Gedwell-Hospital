@@ -38,10 +38,15 @@ body {
     background-color: var(--bg-color);
     transition: var(--transition);
 }
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
 
 .container {
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 15px;
 }
