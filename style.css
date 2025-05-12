@@ -88,6 +88,8 @@ nav ul li a {
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
+    padding: 0.5rem;
+    display: block;
 }
 
 nav ul li a:hover {
@@ -101,6 +103,8 @@ nav ul li a:hover {
     font-size: 1.2rem;
     cursor: pointer;
     transition: var(--transition);
+    min-height: 44px;
+    min-width: 44px;
 }
 
 #themeToggle:hover {
@@ -112,6 +116,10 @@ nav ul li a:hover {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero {
@@ -154,6 +162,8 @@ nav ul li a:hover {
     font-weight: 600;
     transition: var(--transition);
     cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .btn:hover {
@@ -236,6 +246,9 @@ h2 {
     object-fit: cover;
     margin-bottom: 1rem;
     border: 5px solid var(--secondary-color);
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .doctor-card h3 {
@@ -289,6 +302,7 @@ h2 {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: var(--transition);
+    font-size: 16px;
 }
 
 .form-group input:focus,
@@ -313,6 +327,7 @@ h2 {
     flex: 1;
     background-color: var(--bg-color);
     color: var(--text-color);
+    font-size: 16px;
 }
 
 table {
@@ -325,6 +340,8 @@ th, td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    position: relative;
+    padding-left: 50%;
 }
 
 th {
@@ -332,6 +349,23 @@ th {
     color: white;
     font-weight: 600;
 }
+
+td::before {
+    position: absolute;
+    left: 0.5rem;
+    width: 45%;
+    padding-right: 0.5rem;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+}
+
+#medicineTable td:nth-child(1)::before { content: "Name"; }
+#medicineTable td:nth-child(2)::before { content: "Category"; }
+#medicineTable td:nth-child(3)::before { content: "Quantity"; }
+#medicineTable td:nth-child(4)::before { content: "Price"; }
+#medicineTable td:nth-child(5)::before { content: "Expiry"; }
+#medicineTable td:nth-child(6)::before { content: "Actions"; }
 
 tr:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -344,6 +378,8 @@ tr:hover {
     cursor: pointer;
     transition: var(--transition);
     margin-right: 0.5rem;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .edit-btn {
@@ -407,6 +443,8 @@ tr:hover {
     color: white;
     border-radius: 50%;
     transition: var(--transition);
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .social-links a:hover {
@@ -457,77 +495,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive Styles */
-@media (max-width: 992px) {
-    .pharmacy-container,
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    nav ul {
-        display: none;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background-color: var(--primary-color);
-        flex-direction: column;
-        padding: 1rem 0;
-        box-shadow: var(--shadow);
-    }
-
-    nav ul.show {
-        display: flex;
-    }
-
-    nav ul li {
-        margin: 0;
-        padding: 0.5rem 1rem;
-    }
-
-    .mobile-menu {
-        display: block;
-    }
-
-    .hero-content h2 {
-        font-size: 2.2rem;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 250px;
-        margin-bottom: 1rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero {
-        height: auto;
-        padding: 6rem 0;
-    }
-
-    .hero-content h2 {
-        font-size: 1.8rem;
-    }
-
-    section {
-        padding: 3rem 0;
-    }
-
-    h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-}
-
-
 /* AI Assistant Styles */
 .ai-assistant {
     position: fixed;
@@ -550,6 +517,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .ai-btn:hover {
@@ -589,6 +558,8 @@ footer {
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .ai-conversation {
@@ -631,6 +602,7 @@ footer {
     margin-right: 0.5rem;
     background-color: var(--bg-color);
     color: var(--text-color);
+    font-size: 16px;
 }
 
 .ai-send-btn {
@@ -641,6 +613,8 @@ footer {
     padding: 0 1rem;
     cursor: pointer;
     transition: var(--transition);
+    min-height: 44px;
+    min-width: 44px;
 }
 
 .ai-send-btn:hover {
@@ -683,20 +657,225 @@ footer {
     }
 }
 
-@media (max-width: 576px) {
-    .ai-assistant {
-        bottom: 20px;
-        right: 20px;
+/* Touch feedback */
+button:active, a.btn:active, .touch-active {
+    transform: scale(0.98);
+    opacity: 0.9;
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+    button:hover, a.btn:hover, .service-card:hover, .doctor-card:hover {
+        transform: none !important;
+    }
+}
+
+/* Prevent blue highlight on tap */
+button, a, input, textarea, select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .pharmacy-container,
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* General layout adjustments */
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    /* Header adjustments */
+    header {
+        padding: 0.5rem 0;
     }
     
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo p {
+        font-size: 0.7rem;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: var(--shadow);
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0;
+        padding: 0.8rem 1rem;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+
+    /* Hero section */
+    .hero {
+        height: auto;
+        min-height: 70vh;
+        padding: 4rem 0;
+        margin-top: 50px;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    /* Services grid */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Doctors grid */
+    .doctors-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Pharmacy system */
+    .pharmacy-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    table {
+        font-size: 0.85rem;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    th, td {
+        padding: 0.5rem;
+    }
+
+    /* Contact section */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Form elements */
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        padding: 0.7rem;
+    }
+
+    /* Footer adjustments */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Button sizes */
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    /* Search filter */
+    .search-filter {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* AI assistant */
     .ai-container {
-        width: 300px;
-        max-height: 400px;
+        width: 90%;
+        right: 5%;
+        max-height: 60vh;
     }
     
     .ai-btn {
         width: 50px;
         height: 50px;
         font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small devices */
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    /* Doctor cards */
+    .doctor-card img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Section padding */
+    section {
+        padding: 3rem 0;
+    }
+
+    /* Table adjustments */
+    table {
+        border: 0;
+    }
+    
+    table thead {
+        display: none;
+    }
+    
+    table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #ddd;
+    }
+    
+    table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        border-bottom: 1px dotted #ddd;
+        text-align: right;
+        white-space: normal;
+    }
+    
+    table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: auto;
+        padding-right: 1rem;
+        text-align: left;
+        position: static;
+        width: auto;
+    }
+    
+    table td:last-child {
+        border-bottom: 0;
+    }
+    
+    table td {
+        padding-left: 0.5rem;
     }
 }
