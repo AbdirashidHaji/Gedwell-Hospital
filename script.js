@@ -335,3 +335,12 @@ window.addEventListener('load', () => {
     document.querySelector('.footer-bottom p').textContent = 
         `© ${new Date().getFullYear()} Gedwell Hospital. All Rights Reserved.`;
 });
+
+// Dental FAQ Functionality
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        question.classList.toggle('active');
+        answer.classList.toggle('show');
+    });
+});

@@ -1012,3 +1012,90 @@ button, a, input, textarea, select {
         flex: 0 0 280px;
     }
 }
+
+
+/* Dental Service Icon Color */
+.fa-tooth {
+    color: #3498db; /* Matching your secondary color */
+}
+
+/* Dental Special Card */
+.dental-highlight {
+    border: 2px solid #3498db;
+    position: relative;
+    overflow: hidden;
+}
+
+.dental-highlight::after {
+    content: "New";
+    position: absolute;
+    top: 10px;
+    right: -25px;
+    background-color: #3498db;
+    color: white;
+    padding: 0.2rem 2rem;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+/* Dental FAQ Styles */
+.dental-faq {
+    background-color: var(--light-color);
+    padding: 4rem 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.5rem;
+    text-align: left;
+    background-color: var(--bg-color);
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    background-color: var(--light-color);
+}
+
+.faq-question i {
+    transition: var(--transition);
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: var(--bg-color);
+}
+
+.faq-answer p {
+    padding: 1.5rem 0;
+    border-top: 1px solid #eee;
+}
+
+.faq-answer.show {
+    max-height: 500px;
+}
